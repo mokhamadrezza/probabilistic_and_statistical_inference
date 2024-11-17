@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probabilistic dan Statistical Inference Menggunakan Python</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="Judul">Probabilistic dan Statistical Inference Menggunakan Python</h1>
+        </div>
+<style>
+    
+body{
+    background-color: #fff;
+}
+
+.container{
+    background-color: #fff;
+    padding-top: 4%;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-bottom: 3%;
+}
+
+.container .header{
+    color: black;
+}
+
+.Judul{
+    font-size: 38px;
+    text-align: left;
+    font-weight: bolder;
+    margin: 1%;
+    font-family: Calibri, Arial, sans-serif;
+}
+
+.content-box{
+    max-width: 90vw;
+    min-width: 20%;
+    border: 0.1vw solid #4471C4;
+    background-color: #fff;
+    box-shadow: 0.4vw 0.4vw 1.5vw rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Arial, sans-serif;
+    margin-left: 1%;
+    margin-bottom: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 1%;
+    text-align: justify;
+}
+
+.content-box h2{
+    font-size: xx-large;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: inline-flex;
+    align-content: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+}
+
+.content-box ul{
+    list-style-type: square;
+    padding-left: 2%;
+    margin-left: 1%;
+    font-size: 16px;
+    line-height: 2.5;
+    max-width: 90vw;
+}
+
+.content-box ul li{
+    max-width: 90vw;
+}
+
+.top-box{
+    margin-bottom: 0.5%;
+    max-width: 90vw;
+}
+
+.no-bullets{
+    list-style-type: none;
+    padding-left: 0;
+    max-width: 90vw;
+}
+
+.no-bullets ul{
+    padding-left: 3%; /* Menambahkan indentasi untuk daftar bersarang */
+    max-width: 90vw;
+}
+
+.note-box{
+    display: flex;
+    max-width: 90vw;
+    height: auto;
+    padding: 1%;
+    border-radius: 1vw;
+    border: 0.1vw solid #000;
+    background-color: #CFE1F3; /* Warna latar belakang seperti catatan */
+    box-shadow: 0.3vw 0.3vw 1vw rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Arial, sans-serif;
+    position: relative;
+}
+
+.note-box span{
+    margin-top: 0%;
+    font-size: 1.6vw;
+    font-family: calibri, Arial, sans-serif;
+    text-align: justify;
+    max-width: 90vw;
+    font-weight: bolder;
+}
+
+.note-box h1{
+    margin-top: 0;
+    max-width: fit-content;
+    font-size: 30px;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+}
+
+.note-box p{
+    margin: 0;
+    max-width: 90vw;
+    font-size: 1.4vw;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+}
+/* Style for h1 */
+h1{
+    font-size: 36px; /* Ukuran font 18 */
+    font-weight: bolder;
+    font-family: Calibri, Arial, sans-serif;
+    color: #1f2855;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for h2 */
+h2{
+    font-size: 16px; /* Ukuran font 16 */
+    font-weight: bolder;
+    font-family: Calibri, Arial, sans-serif;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/*Style for h3 */
+h3 {
+    font-size: 14px; /* Ukuran font 14 */
+    font-weight: bolder;
+    font-family: calibri, Arial, sans-serif;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    line-height: 1.5; /*Jarak spasi 1/5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for p */
+p{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 18px; /* Ukuran font 18 */
+    text-align: justify;
+    margin-right: 1%;
+    margin-left: 1%;
+    max-width: 90vw;
+}
+/* Style for ul and ol */
+ul, ol{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    list-style-type: decimal;
+    font-size: 18px; /* Ukuran font 18 */
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for li */
+li{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+    margin-right: 1%;
+    max-width: 90vw;
+}
+
+.small-text{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.large-text {
+    line-height: 1.5; /* Jarak Spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bolder;
+    vertical-align: top;
+}
+
+.Tools{
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin-left: 30%;
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+}
+
+.Tipe{
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin-left: 0%;
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+}
+
+.pic {
+    display: block;
+    margin: 0;
+    padding: 20px;
+    height: auto;
+}
+
+iframe{
+    max-width: 100%;
+    min-height: auto;
+    margin-top: 1%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    margin-left: 2%;
+    border: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+table, th, td {
+    border: 0.1vw solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-size: 1.2vw;
+}
+th {
+    background-color: #2796a3; /* Warna Latar Belakang untuk Baris Pertama */
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+}
+tr:hover {
+    background-color: beige;
+}
+
+font {
+    max-width: 100%;
+}
+
+.kotak {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5vw;
+    line-height: 1.5;
+    width: 80%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    background-color: grey;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.teks-tomato{
+    color: tomato;
+    font-weight: bold;
+}
+
+.teks-skyblue{
+    color: skyblue;
+    font-weight: bold;
+}
+
+.teks-sandybrown{
+    color: sandybrown;
+    font-weight: bold;
+}
+
+</style>
+
+<div class="content-box"> <!-- Berisi Poin-poin Konten-->
+    <h2>
+        <img src="https://drive.google.com/thumbnail?id=1OSwy6Vn5jv8ERj5uV-d5abA8LFGNXV9x" alt="Content Image" style="vertical-align: middle; margin-right: 10px; width: 60px; height: 50px; padding-top: 10px;">Content
+    </h2>
+    <ul class="no-bullets" style="color: blue;">
+        <li><a href="#variabel-random" style="color: blue;">Variabel Random dan Probabilitas</a></li>
+        <li><a href="#pmf" style="color: blue;">Probability Mass Function (PMF)</a></li>
+        <li><a href="#pdf" style="color: blue;">Probability Density Function (PDF)</a></li>
+        <li><a href="#cdf" style="color: blue;">Cumulative Distribution Function (CDF)</a></li>
+        <li><a href="#bernoulli" style="color: blue;">Distribusi Bernoulli</a></li>
+        <li><a href="#uniform" style="color: blue;">Distribusi Uniform</a></li>
+        <li><a href="#binomial" style="color: blue;">Distribusi Binomial</a></li>
+        <li><a href="#poisson" style="color: blue;">Distribusi Poisson</a></li>
+        <li><a href="#normal" style="color: blue;">Distribusi Normal</a></li> 
+        <li><a href="#eksponensial" style="color: blue;">Distribusi Eksponensial</a></li>
+    </ul>
+     
+</div>
+
+<div class="content">
+    
+    <!--variabel-random-->
+    <h1 id="variabel-random" style="margin-left: 1%;">Variabel Random dan Probabilitas</h1>
+    <p>
+        <b>Variabel random adalah fungsi yang mengaitkan hasil dari percobaan acak dengan angka. Setiap hasil dari percobaan tersebut memiliki peluang atau probabilitas tertentu untuk terjadi. 
+            Probabilitas (peluang) adalah peluang atau kemungkinan dari suatu kejadian, terjadi atau tidak dan seberapa besar kemungkinan kejadian tersebut berpeluang untuk terjadi</b>. 
+        Variabel random dapat mengambil berbagai nilai berdasarkan hasil dari suatu proses yang tidak pasti. Variabel random dibagi menjadi dua kategori utama:
+    </p>
+    <ol type="1">
+        <li>
+            <b>Variabel Random Diskrit (Discrete Random Variable)</b>: Variabel ini hanya dapat mengambil nilai tertentu yang terpisah atau terhitung. Contohnya termasuk jumlah kepala yang muncul dalam pelemparan koin, jumlah dadu yang muncul.
+        </li>
+        <li>
+            <b>Variabel Random Kontinu (Continuous Random Variable)</b>: Variabel ini dapat mengambil nilai dalam rentang tertentu, termasuk semua nilai antara dua titik. Contohnya meliputi tinggi badan seseorang, berat badan, atau waktu yang diperlukan untuk menyelesaikan tugas.
+        </li>
+    </ol>
+    <iframe src="https://drive.google.com/file/d/1CruIyepTITZiXhtAm0prK-gbat04RgNy/preview" width="50%" height="230px" style="margin-left: 25%;" frame-border="0" alt="Gambar 1"></iframe>
+
+
+    <!--pmf-->
+    <h1 id="pmf" style="margin-left: 1%;">Probability Mass Function (PMF)</h1>
+    <p>
+        <b>Probability Mass Function (PMF) adalah fungsi yang digunakan untuk mendeskripsikan distribusi probabilitas dari variabel random diskrit</b>.
+        Fungsi ini memberikan probabilitas bahwa variabel random tersebut akan mengambil nilai tertentu. 
+        PMF, dilambangkan dengan <iframe src="https://drive.google.com/file/d/176Sg1-3KYdTJrxjg4OTexLU93Z2Td5bh/preview" width="55px" height="30px" style="vertical-align: middle;" frame-border="0" alt="Rumus 1"></iframe> 
+        atau <iframe src="https://drive.google.com/file/d/1vbaD2HvPaYmJutd3LNDF_CgZdCSPSWZx/preview" width="55px" height="30px" style="vertical-align: middle;" frame-border="0" alt="Rumus 2"></iframe> yang merupakan fungsi yang memenuhi dua kondisi utama:
+    </p>
+    <ol type="1">
+        <li><b>Probabilitas non-negatif</b>:</li>
+        <iframe src="https://drive.google.com/file/d/1DUu3ZCCEQeF3XOgbpGZbSZxKzbdMe1Iz/preview" width="220px" height="60px" style="vertical-align: middle; margin-bottom: 0;" frame-border="0" alt="Rumus 3"></iframe>
+        <p style="margin-left: 0;">Ini berarti probabilitas tidak bisa bernilai negatif.</p>
+
+        <li><b>Jumlah Total Probabilitas</b>:</li>
+        <iframe src="https://drive.google.com/file/d/1uFD0Z_FytdO7447DeCQnwzFL4f4Sjk8C/preview" width="220px" height="65px" style="vertical-align: middle; margin-bottom: 0;" frame-border="0" alt="Rumus 4"></iframe>
+        <p style="margin-left: 0;">Jumlah semua probabilitas untuk semua kemungkinan nilai yang bisa diambil oleh variabel random harus sama dengan 1.</p>
+    </ol>
+
+
+    <!--pdf-->
+    <h1 id="pdf" style="margin-left: 1%;">Probability Density Function (PDF)</h1>
+    <p>
+        <b>Probability Density Function (PDF) adalah fungsi yang digunakan untuk mendeskripsikan distribusi probabilitas dari variabel random kontinu</b>. PDF menggambarkan kemungkinan distribusi nilai yang dapat diambil oleh variabel random dalam rentang tertentu. 
+        PDF, dilambangkan dengan <iframe src="https://drive.google.com/file/d/1vbaD2HvPaYmJutd3LNDF_CgZdCSPSWZx/preview" width="55px" height="30px" style="vertical-align: middle;" frame-border="0" alt="Rumus 2"></iframe> merupakan fungsi yang memenuhi dua kondisi utama:
+    </p>
+    <ol type="1">
+        <li><b>Probabilitas non-negatif</b>:</li>
+        <iframe src="https://drive.google.com/file/d/1PXjLQ1Z5vrwIKmy-2iYZA_PUAY01bey4/preview" width="200px" height="55px" style="vertical-align: middle; margin-bottom: 0;" frame-border="0" alt="Rumus 5"></iframe>
+        <p style="margin-left: 1%;">Ini berarti probabilitas tidak bisa bernilai negatif.</p>
+
+        <li><b>Jumlah Total Probabilitas</b>:</li>
+        <iframe src="https://drive.google.com/file/d/1qrCVDF-Kpy9lIr7MCJzHSZ5Q2mjwwgbq/preview" width="200px" height="55px" style="vertical-align: middle; margin-bottom: 0;" frame-border="0" alt="Rumus 6"></iframe>
+        <p style="margin-left: 1%;">Integral dari PDF di seluruh rentang nilai harus sama dengan 1, yang mencerminkan bahwa total probabilitas adalah 1.</p>
+    </ol>
+
+
+    <!--bernoulli-->
+    <h1 id="bernoulli" style="margin-left: 1%;">Distribusi Bernoulli</h1>
+    <p>
+        <b>Distribusi Bernoulli menggambarkan situasi di mana sebuah percobaan acak menghasilkan dua kemungkinan hasil</b>. Distribusi ini digunakan untuk memodelkan percobaan yang hanya memiliki dua hasil yang mungkin: "sukses" dan "gagal".
+    </p>
+    <iframe src="https://drive.google.com/file/d/1xm7Z2krjKRn_lpC-D0j_JY86HABm1Sa2/preview" width="45%" height="300px" frame-border="0" alt="Gambar 2"></iframe></iframe>
+
+    <p>Percobaan Bernoulli adalah percobaan yang memenuhi kondisi-kondisi berikut:</p>
+    <ol type="1">
+        <li>Percobaan/kejadian hanya dilakukan satu kali.</li>
+        <li>Setiap percobaan/kejadian hanya memberikan dua hasil  yang mungkin, yaitu sukses atau gagal.</li>
+        <li>Probabilitas sukses, disimbolkan dengan p, dan probabilitas gagal, dinyatakan dengan q, adalah q = 1 – p</li>
+    </ol>
+
+    <p>
+        Salah satu contoh distribusi bernouli adalah percobaan pelemparan koin, berikut adalah contoh kode python untuk percobaan pelemparan 4 koin:
+    </p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        # simulating 4 coin flips
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-skyblue">np.random.seed(42)</span>
+        <br><span class="teks-skyblue">random_numbers = np.random.random(size=4)</span>
+        <br><span class="teks-sandybrown">random_numbers</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([0.37454012, 0.95071431, 0.73199394, 0.59865848])
+    </p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        <span class="teks-skyblue">heads = random_numbers < 0.5</span>
+        <br><span class="teks-sandybrown">heads</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([ True, False, False, False])
+    </p>
+
+    <p>Keterangan:</p>
+    <p>Jumlah kepala dapat dihitung dengan menjumlahkan larik Boolean, karena dalam konteks numerik, Python memperlakukan True sebagai 1 dan False sebagai 0.</p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        <span class="teks-sandybrown">np.sum(heads)</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        1
+    </p>
+
+    <p>Keterangan:</p>
+    <p>Jumlah peluang mendapatkan empat kepala jika kita berulang kali melempar 4 koin adalah 1 dari 4 perulangan (1/4)</p>
+    <p class="kotak" style="color: #fff;">
+        # simulating 4 coin flips
+        <br><span class="teks-skyblue">n_all_heads = 0</span> #initialize number of 4 head trials
+        <br><span class="teks-skyblue">for _ in range(10000):</span>
+        <br><span class="teks-skyblue">heads = np.random.random(size=4) < 0.5</span>
+        <br><span class="teks-skyblue">n_heads = np.sum(heads)</span>
+        <br><span class="teks-skyblue">if n_heads == 4:</span>
+        <br><span class="teks-skyblue">n_all_heads += 1</span>
+    </p>
+    <p>Keterangan:</p>
+    <p>Melakukan percobaan untuk mengetahui peluang mendapatkan empat kepala jika dilempar 4 koin sebanyak 10.000 kali percobaan.</p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        <span class="teks-sandybrown">n_all_heads / 10000</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        0.0619
+    </p>
+    <p>Keterangan:</p>
+    <p>Nilai kemungkinan yang didapatkan untuk 4 kepala adalah 0.062, dari 10.000 kali percobaan.</p>
+
+
+    <!--uniform-->
+    <h1 id="uniform" style="margin-left: 1%;">Distribusi Uniform</h1>
+    <iframe src="https://drive.google.com/file/d/1E0aSjycH_M4s31PRix2dNjHD0vxhg8IR/preview" width="40%" height="220px" frame-border="0" alt="Gambar 3"></iframe>
+    <p>
+        <b>Distribusi Uniform adalah salah satu distribusi probabilitas yang paling sederhana, di mana setiap hasil dalam suatu rentang atau himpunan memiliki probabilitas yang sama</b>. 
+        Salah satu contoh dalam distribusi uniform adalah melempar dadu. 
+        Nilai yang mungkin untuk hasil pelemparan adalah 1, 2, 3, 4, 5, dan 6, dan setiap nilai memiliki probabilitas yang sama.
+    </p>
+
+    <iframe src="https://drive.google.com/file/d/1Y0cWgknwze2mZziEXmdh0gEQTIvEUY3B/preview" width="55%" height="300px" frame-border="0" alt="Gambar 4"></iframe>
+    <p>
+        Dalam pelemparan dadu terdapat dua yang menjadikan kasus tersebut adalah distribusi uniform yaitu:
+    </p>
+    <ol type="1">
+        <li>Hasil-hasilnya bersifat diskrit karena hanya nilai-nilai tertentu yang dapat dicapai.</li>
+        <li>Setiap kemungkinan memiliki probabilitas (p). Dalam kasus pelemparan dadu dengan 6 sisi, setiap sisi (angka) memiliki kemungkinan muncul yang sama, yaitu ⅙. Hal ini karena setiap sampel bersifat saling bebas.</li>
+    </ol>
+
+    <p>Berikut adalah contoh kode python untuk distribusi uniform pada pelemparan dadu:</p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br># simulasi pelemparan dadu sebanyak 100000 kali
+        <br><span class="teks-skyblue">hasil_pelemparan = np.random.randint(1, 7, size=100000)</span>
+        <br># visualisasi hasil pelemparan dadu dengan histogram
+        <br><span class="teks-skyblue">plt.hist(hasil_pelemparan, bins=np.arange(1, 8) - 0.5, edgecolor='black', rwidth=0.8)</span>
+        <br><span class="teks-skyblue">plt.xticks([1, 2, 3, 4, 5, 6])</span>
+        <br><span class="teks-skyblue">plt.xlabel('Nilai Dadu')</span>
+        <br><span class="teks-skyblue">plt.ylabel('Frekuensi')</span>
+        <br><span class="teks-skyblue">plt.title('Distribusi Hasil Pelemparan Dadu (100000 kali)')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>Output dari kode python di atas adalah:</p>
+    <iframe src="https://drive.google.com/file/d/1rLNzn0x0nsjTd94WdcLKkGIPUOhy3bJ0/preview" width="75%" height="450px" style="margin-left: 5%;" frame-border="0" alt="Gambar 5"></iframe>
+    <p>Terlihat bahwa frekuensi antar nilai dadu mendekati nilai yang sama yang menandakan peristiwa distribusi uniform.</p>
+
+
+    <!--binomial-->
+    <h1 id="binomial" style="margin-left: 1%;">Distribusi Binomial</h1>
+    <p>
+        <b>Distribusi binomial adalah distribusi yang hanya menghasilkan output benar dan salah (bi = dua)</b>. Jumlah keberhasilan dalam n percobaan Bernoulli dengan probabilitas p keberhasilan, termasuk dalam distribusi Binomial.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1_BzLDHIvbAU8MQV-H7swTLGrYpDX42C_/preview" width="60%" height="350px" frame-border="0" alt="Gambar 6"></iframe>
+
+    <p>
+        Jika dilakukan <span class="teks-tomato">n</span> percobaan independen, di mana probabilitas sukses pada setiap percobaan adalah <span class="teks-tomato">p</span>, maka variabel random <span class="teks-tomato">X</span> yang menyatakan jumlah keberhasilan dalam <span class="teks-tomato">n</span> percobaan mengikuti distribusi binomial.
+    </p>
+
+    <p>Berikut adalah kode python untuk membangkitkan distribusi binomial:</p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        # the binomial PMF
+        <br><span class="teks-skyblue">np.random.seed(42)</span>
+        <br><span class="teks-skyblue">samples = np.random.binomial(60, 0.1, size=10000)</span>
+        <br><span class="teks-sandybrown">samples</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([ 5, 10,  7, ..., 10,  5,  4])
+    </p>
+
+    <p>Keterangan:</p>
+    <p>
+        Untuk membangkitkan distribusi binomial dapat digunakan <span class="teks-tomato">np.random.binomial(n, p, size)</span>. <span class="teks-tomato">n</span> merupakan jumlah percobaan, <span class="teks-tomato">p</span> adalah probabilitas sukses bahwa <span class="teks-tomato">n</span> adalah integer <span class="teks-tomato">>= 0</span>. 
+        Size adalah output shape.
+    </p>
+
+    <p>
+        Untuk memvisualisasikan PMF distribusi binomial kita dapat menggunakan bantuan <span class="teks-tomato">scipy.stats.binomial</span> yang merupakan metode dari library numpy untuk mengambil sample binomial, dengan contoh kode berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Binomial PMF
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">from scipy.stats import binom</span>
+        <br><span class="teks-skyblue">n, p = 60, 0.1</span>
+        <br><span class="teks-skyblue">x = [x for x in range(17)]</span>
+        <br>
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(1, 1)</span>
+        <br><span class="teks-skyblue">ax.plot(x, binom.pmf(x, n, p), 'bo', ms=5, label='binom pmf')</span>
+        <br><span class="teks-skyblue">ax.vlines(x, 0, binom.pmf(x, n, p), colors='b', lw=3, alpha=0.5)</span>
+        <br><span class="teks-skyblue">plt.xticks(x)</span>
+        <br><span class="teks-skyblue">plt.ylabel('probability')</span>
+        <br><span class="teks-skyblue">plt.xlabel('number of successes')</span>
+        <br><span class="teks-skyblue">plt.title('Binomial PMF')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <iframe src="https://drive.google.com/file/d/17bZeZxbYqWYAD2KIO79ebz0yTto_nHpW/preview" width="80%" height="450px" style="margin-left: 5%;" frame-border="0" alt="Gambar 7"></iframe>
+
+    <p>
+        Grafik di atas adalah hasil distribusi binomial dari 60 percobaan <span class="teks-tomato">(n)</span> dan <span class="teks-tomato">p = 0.1</span> untuk 17 sample data. Terlihat jumlah keberhasilan yang paling mungkin adalah 6 dari 60.
+    </p>
+
+    <p>
+        Untuk memvisualisasikan Binomial CDF dapat menggunakan contoh kode python berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # The Binomial CDF
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">import seaborn as sns</span>
+        <br># generate binomial data
+        <br><span class="teks-skyblue">data_binom = binom.rvs(n=60,p=0.1,size=10000)</span>
+        <br># plot the CDF
+        <br><span class="teks-skyblue">sns.ecdfplot(data_binom)</span>
+        <br><span class="teks-skyblue">plt.xlabel('number of successes')</span>
+        <br><span class="teks-skyblue">plt.ylabel('CDF')</span>
+        <br><span class="teks-skyblue">plt.title('Binomial CDF')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <iframe src="https://drive.google.com/file/d/1wxOePOcIGTTlFHIc9suAfKwcrF1os3y3/preview" width="65%" height="400px" style="margin-left: 10%;" frame-border="0" alt="Gambar 8"></iframe>
+    <p>
+        Berikut adalah visualisasi dari sampel yang sudah dilakukan sebelumnya untuk 10.000 data. Didapati  bahwa jumlah keberhasilan yang paling mungkin adalah antara 6-8 dari 60 dengan garis vertikal yang paling panjang.
+    </p>
+
+
+    <!--poisson-->
+    <h1 id="poisson" style="margin-left: 1%;">Distribusi Poisson</h1>
+    <p>
+        Distribusi poisson adalah suatu distribusi untuk probabilitas kejadiannya kecil dan bergantung, yang kejadiannya bergantung pada selang waktu dan daerah tertentu, dengan hasil variabel diskrit dan antar variabel prediktor saling independen.
+    </p>
+    <iframe src="https://drive.google.com/file/d/13K0BtHe408PLPl14tcqeRScCoOLKukBT/preview" width="65%" height="400px" frame-border="0" alt="Gambar 9"></iframe>
+
+    <p>Berikut adalah contoh dari proses distribusi poisson:</p>
+    <ol type="1">
+        <li>Kelahiran alami di rumah sakit tertentu.</li>
+        <li>Hit di situs web selama jam tertentu.</li>
+        <li>Serangan meteor.</li>
+        <li>Tumbukan molekul dalam gas.</li>
+        <li>Insiden penerbangan, dll.</li>
+    </ol>
+    
+    <p>
+        Distribusi Poisson juga sering dianggap sebagai pendekatan atau batas dari distribusi Binomial dalam kasus probabilitas kejadian yang sangat kecil (peristiwa langka) dan jumlah percobaan yang besar. 
+        Ini digunakan untuk memodelkan peristiwa yang jarang terjadi dalam interval waktu, luasan, atau volume tertentu.
+    </p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        <span class="teks-sandybrown">np.random.poisson(6, size=10000)</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([5, 3, 5, ..., 6, 6, 5])
+    </p>
+
+    <p>
+        Pada python untuk membangkitkan sample berdistribusi Poisson dapat menggunakan <span class="teks-tomato">np.random.poisson(lam, size)</span> dengan <span class="teks-tomato">lam</span> merupakan adalah rata-rata jumlah kejadian yang terjadi dalam suatu interval waktu atau space tertentu, 
+        dan  size adalah jumlah sampel yang dihasilkan oleh fungsi.
+    </p>
+    <p>
+        Berikut adalah contoh kode untuk membangun plot PMF distribusi python pada kasus suatu situs di mana pada jam tertentu, situs kemungkinan akan mendapatkan 6 hit, yang merupakan rata-rata, tetapi mungkin juga mendapatkan 10, atau tidak sama sekali.
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">from scipy.stats import poisson</span>
+        <br># parameter distribusi Poisson
+        <br><span class="teks-skyblue" style="margin-right: 1%;">lambda_ = 6</span> # rata-rata jumlah kejadian
+        # nilai k (jumlah kejadian) dari 0 hingga 20
+        <br><span class="teks-skyblue">k_values = np.arange(0, 21)</span>
+        <br># menghitung PMF distribusi Poisson
+        <br><span class="teks-skyblue">poisson_pmf = poisson.pmf(k_values, lambda_)</span>
+        <br># plot PMF distribusi Poisson
+        <br><span class="teks-skyblue">plt.bar(k_values, poisson_pmf, color='blue', alpha=0.7, label=f'Poisson (λ={lambda_})')</span>
+        <br><span class="teks-skyblue">plt.xlabel('Jumlah Kejadian (k)')</span>
+        <br><span class="teks-skyblue">plt.ylabel('Probabilitas')</span>
+        <br><span class="teks-skyblue">plt.title('Distribusi Poisson')</span>
+        <br><span class="teks-skyblue">plt.xticks(k_values)</span>
+        <br><span class="teks-skyblue">plt.legend()</span>
+        <br><span class="teks-skyblue">plt.grid(axis='y', linestyle='--')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <iframe src="https://drive.google.com/file/d/1wcs66ExAqxDh9WDviTxj0WNSb5fkqsjb/preview" width="65%" height="400px" style="margin-left: 10%;" frame-border="0" alt="Gambar 10"></iframe>
+
+    <p>
+        Untuk mengambil PMF distribusi Poisson, dapat menggunakan modul <span class="teks-tomato">Poisson</span> pada library <span class="teks-tomato">scipy.stats</span>
+    </p>
+    <p>
+        Untuk membangun plot CDF pada distribusi Poisson dapat menggunakan kode berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # plot CDF distribusi Poisson
+        <br><span class="teks-skyblue">poisson_cdf = poisson.cdf(k_values, lambda_)</span>
+        <br><span class="teks-skyblue">plt.step(k_values, poisson_cdf, color='blue', label=f'Poisson (λ={lambda_})')</span>
+        <br><span class="teks-skyblue">plt.xlabel('Jumlah Kejadian (k)')</span>
+        <br><span class="teks-skyblue">plt.ylabel('CDF')</span>
+        <br><span class="teks-skyblue">plt.title('Distribusi Poisson')</span>
+        <br><span class="teks-skyblue">plt.xticks(k_values)</span>
+        <br><span class="teks-skyblue">plt.legend()</span>
+        <br><span class="teks-skyblue">plt.grid(axis='y', linestyle='--')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <iframe src="https://drive.google.com/file/d/1kY45Gx_7xTsh5LAKAoOWvgYC8ioPVYna/preview" width="75%" height="450px" style="margin-left: 7%;" frame-border="0" alt="Gambar 11"></iframe>
+    <p>
+        Terlihat bahwa Poisson  CDF menyerupai Binomial CDF.
+    </p>
+
+
+    <!--normal-->
+    <h1 id="normal" style="margin-left: 1%;">Distribusi Normal</h1>
+    <p>
+        <b>Distribusi normal adalah sebuah fungsi probabilitas yang menunjukkan distribusi atau penyebaran suatu variabel</b>. Fungsi tersebut umumnya dibuktikan oleh sebuah grafik simetris yang disebut kurva lonceng (bell curve). 
+        Distribusi normal sering kali juga dikenal dengan distribusi Gaussian yang dinamai dari matematikawan Jerman Carl Friedrich Gauss, yang pertama kali menggambarkan bentuknya.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1T9EZ_foi4sc2Hd4euhVaZaedRTkXBLCW/preview" width="55%" height="270px" frame-border="0" alt="Gambar 12"></iframe>
+
+    <p>
+        Beberapa parameter yang digunakan untuk menilai adalah rata-rata dan standar deviasi. Rata-rata distribusi normal tidak sama dengan rata-rata dihitung dari data. 
+        Standar deviasi dari distribusi normal tidak sama standar deviasi dihitung dari data. Berikut adalah contoh kode untuk membangkitkan data berdistribusi normal:
+    </p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        # generate normal data
+        <br><span class="teks-skyblue">data_normal = np.random.normal(loc=0, scale=1, size=10000)</span>
+        <br><span class="teks-sandybrown">data_normal</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([-0.87693707, -0.44051694, -1.18777819, ..., -1.97354091, -0.16218336,  0.15052905])
+    </p>
+
+    <p>
+        Keterangan:
+        <ol type="1">
+            <li><span class="teks-tomato">loc</span> adalah nilai rata-rata dari distribusi normal</li>
+            <li><span class="teks-tomato">scale</span> adalah standar deviasi dari distribusi normal</li>
+        </ol>
+    </p>
+
+    <p>
+        Berikut adalah contoh untuk membangun plot PDF dari distribusi Normal:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # generate PMF Normal
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">from scipy.stats import norm</span>
+        <br># parameter distribusi Normal
+        <br><span class="teks-skyblue" style="margin-right: 1%;">mu = 0</span> # rata-rata distribusi
+        <br><span class="teks-skyblue" style="margin-right: 1%;">sigma = 1</span> # standar deviasi distribusi
+        <br># nilai x dari -4 hingga 4
+        <br><span class="teks-skyblue">x = np.linspace(-4, 4, 1000)</span>
+        <br># menghitung PDF distribusi Normal
+        <br><span class="teks-skyblue">normal_pdf = norm.pdf(x, mu, sigma)</span>
+        <br># plot PDF distribusi Normal
+        <br><span class="teks-skyblue">plt.plot(x, normal_pdf, color='blue', label=f'Normal (μ={mu}, σ={sigma})')</span>
+        <br><span class="teks-skyblue">plt.xlabel('Nilai (x)')</span>
+        <br><span class="teks-skyblue">plt.ylabel('PDF')</span>
+        <br><span class="teks-skyblue">plt.title('Distribusi Normal')</span>
+        <br><span class="teks-skyblue">plt.legend()</span>
+        <br><span class="teks-skyblue">plt.grid(axis='y', linestyle='--')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <iframe src="https://drive.google.com/file/d/18bQMeecs1Q79fy17TP2qIcnyyLnxuU01/preview" width="65%" height="400px" style="margin-left: 10%;" frame-border="0" alt="Gambar 13"></iframe>
+
+    <p>
+        Terlihat bahwa PDF distribusi normal memiliki bentuk yang simetris. Saat memodelkan data sebagai terdistribusi normal, outlier dan sangat tidak mungkin. 
+        Kumpulan data riil sering kali memiliki nilai ekstrem, dan ketika ini terjadi, distribusi Normal mungkin bukan deskripsi terbaik dari data.
+    </p>
+    <p>
+        Untuk membangkitkan CDF dari distribusi normal dapat menggunakan kode python sebagai berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # generate CDF Normal data
+        <br><span class="teks-skyblue">data_normal = np.random.normal(loc=0, scale=1, size=10000)</span>
+        # plot the CDF
+        <br><span class="teks-skyblue">sns.ecdfplot(data_normal)</span>
+        <br><span class="teks-skyblue">plt.xlabel('x')</span>
+        <br><span class="teks-skyblue">plt.ylabel('CDF')</span>
+        <br><span class="teks-skyblue">plt.title('Normal CDF')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Dengan output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1_7QYlBemUW7sbj3CounN9T6mQGOeRetT/preview" width="65%" height="400px" style="margin-left: 10%;" frame-border="0" alt="Gambar 14"></iframe>
+
+
+    <!--eksponensial-->
+    <h1 id="eksponensial" style="margin-left: 1%">Distribusi Eksponensial</h1>
+    <p>
+        <b>Distribusi Eksponensial adalah distribusi probabilitas yang digunakan untuk memodelkan waktu antara peristiwa dalam proses Poisson</b>. Distribusi ini sering kali digunakan dalam konteks pengukuran waktu hingga suatu peristiwa terjadi, seperti waktu yang diperlukan hingga kegagalan suatu mesin atau waktu antara kedatangan pelanggan dalam sistem antrian. 
+        Distribusi eksponensial sering digunakan dalam berbagai bidang, antara lain:
+        <ol type="1">
+            <li><b>Ilmu Komputer</b>: Untuk memodelkan waktu antara kedatangan paket data dalam jaringan komputer.</li>
+            <li><b>Ekonomi dan Keuangan</b>: Dalam memodelkan waktu hingga kegagalan investasi atau waktu antara transaksi.</li>
+            <li><b>Ilmu Kesehatan</b>: Untuk memodelkan waktu hidup pasien setelah diagnosis penyakit tertentu.</li>
+            <li><b>Rekayasa</b>: Dalam analisis keandalan untuk memodelkan waktu hingga kegagalan sistem atau komponen.</li>
+        </ol>
+    </p>
+
+    <p>
+        Berikut adalah contoh kode untuk membangkitkan data berdistribusi eksponensial dengan λ=0.5
+    </p>
+    <p class="kotak" style="color: #fff; margin-bottom: -1.5%;">
+        # generate Exponential data with rate 0.5
+        <br><span class="teks-skyblue">data_exp = np.random.exponential(scale=2, size=10000)</span>
+        <br><span class="teks-sandybrown">data_exp</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        array([1.93334006, 5.70838634, 0.11836791, ..., 2.13482146, 1.04137406,2.17314113])
+    </p>
+
+    <p>
+        Keterangan:
+        <ol type="1">
+            <li><span class="teks-tomato">scale</span> adalah 1/lambda</li>
+            <li><span class="teks-tomato">size</span> adalah jumlah sampel yang dihasilkan oleh fungsi</li>
+        </ol>
+    </p>
+
+    <p>
+        Untuk membangun plot PDF distribusi eksponensial dapat menggunakan contoh kode python berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # generate PDF Exponential
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">from scipy.stats import expon</span>
+        <br># parameter distribusi Exponential
+        <br><span class="teks-skyblue" style="margin-right: 1%;">lambda_ = 0.5</span> # parameter lambda
+        <br># nilai x dari 0 hingga 10
+        <br><span class="teks-skyblue">x = np.linspace(0, 10, 1000)</span>
+        <br># menghitung PDF distribusi Exponential
+        <br><span class="teks-skyblue">exponential_pdf = expon.pdf(x, scale=1/lambda_)</span>
+        <br># plot PDF distribusi Exponential
+        <br><span class="teks-skyblue">plt.plot(x, exponential_pdf, color='blue', label=f'Exponential (λ={lambda_})')</span>
+        <br><span class="teks-skyblue">plt.xlabel('Nilai (x)')</span>
+        <br><span class="teks-skyblue">plt.ylabel('PDF')</span>
+        <br><span class="teks-skyblue">plt.title('Distribusi Exponential')</span>
+        <br><span class="teks-skyblue">plt.legend()</span>
+        <br><span class="teks-skyblue">plt.grid(axis='y', linestyle='--')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>Dengan output grafik PDF distribusi eksponensial adalah sebagai berikut:</p>
+    <iframe src="https://drive.google.com/file/d/1KZYbq5sOz9-3QbdI7pBqrdUX_EIkYWJR/preview" width="70%" height="430px" style="margin-left: 8%;" frame-border="0" alt="Gambar 15"></iframe>
+
+    <p>
+        Untuk membangun plot CDF distribusi eksponensial dapat menggunakan contoh kode python berikut:
+    </p>
+
+    <p class="kotak" style="color: #fff;">
+        # generate CDF Exponential data
+        <br><span class="teks-skyblue">data_exponential = np.random.exponential(scale=2, size=10000)</span>
+        <br># plot the CDF
+        <br><span class="teks-skyblue">sns.ecdfplot(data_exponential)</span>
+        <br><span class="teks-skyblue">plt.xlabel('x')</span>
+        <br><span class="teks-skyblue">plt.ylabel('CDF')</span>
+        <br><span class="teks-skyblue">plt.title('Exponential CDF')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Dengan output grafik CDF distribusi eksponensial adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/17Qp7AdAE0BFaYPkOKg8SocvAzXmtzB_B/preview" width="75%" height="450px" style="margin-left: 7%;" frame-border="0" alt="Gambar 15"></iframe>
+
+    <p>
+        Berikut adalah video tutorial lengkap mengenai Probabilistic and Statistical Inference pada Python:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1vczK0oB4-PY4Wg8ZDyRzKXbGGfi_1Klq/preview" width="95%" height="470px" style="margin-left: 1%;" frame-border="0" allow="autoplay; fullscreen; accelerometer; encrypted-media; gyroscope; picture-in-picture;" alt="video tutorial"></iframe>
+
+
+</div>
+
+</body>
+
+</html>
